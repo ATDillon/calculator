@@ -1,0 +1,114 @@
+html, body, main {
+    width: 100vw;
+    height: 100vh;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#calculator{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 0.3fr 1fr 1fr;
+    grid-template-areas:
+    "display display display"
+    ". clear clear"
+    "num num op"
+    "num num op";
+    background-color: hsl(50, 0%, 80%);
+    width: 50vw;
+    height: 70vw;
+    border: outset 2px hsl(10, 0%, 60%);
+}
+
+#display{
+    grid-area: display;
+    font-family: monospace;
+    font-size: 2em;
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    background-color: hsl(200, 70%, 90%);
+    width: 90%;
+    height: 50%;
+    border: inset 2px hsl(10, 0%, 60%);
+    padding-left: 4px;
+    margin-top: 5px;
+}
+
+/*buttons*/
+
+.misc-buttons{
+    grid-area: clear;
+    display: flex;
+    flex-flow: row-reverse;
+    margin-right: 5px;
+}
+
+.numpad{
+    grid-area: num;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-around;
+    margin: 5px;
+}
+
+.operators{
+    grid-area: op;
+    display: flex;
+    flex-flow: column-reverse;
+    justify-content: space-between;
+    margin: 5px;
+}
+
+button{
+    width: 50%;
+    margin: 2px;
+}
+
+.number{
+    width: 25%;
+}
+
+.operator{
+    background-color: hsl(200, 50%, 70%);
+    height: 20%;
+    width: auto;
+    border: solid 1px hsl(50, 0%, 30%);
+}
+
+#add{
+    height: 40%;
+}
+
+#equals{
+    width: 25%;
+    height: auto;
+}
+
+@media(min-width: 600px){
+    #display{
+        font-size: 3.5em;
+    }
+}
+
+@media(min-width: 1000px){
+
+    #calculator{
+        width: 30vw;
+        height: 40vw;
+    }
+
+    #display{
+        font-size: 3.75em;
+        margin-top: 25px;
+    }
+
+    button{
+        font-size: 1.5em;
+    }
+
+}
