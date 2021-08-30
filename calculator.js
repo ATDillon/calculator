@@ -18,4 +18,20 @@ function operate(firstNum, secondNum, operator){
     }
 }
 
+function changeDisplay(){
+    const numberButtons = document.querySelectorAll('.number');
+    let newContent = "";
+
+    numberButtons.forEach((button) => {
+        
+        button.addEventListener('click', () => {
+            newContent += button.id;
+            document.querySelector('#display').textContent = newContent;
+        })
+    })
+
+    document.querySelector('#display').textContent = newContent;
+}
+
 calculator();
+changeDisplay();
