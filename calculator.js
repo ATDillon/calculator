@@ -87,6 +87,12 @@ function calculator(){
             })
         })
 
+        document.querySelector('#backspace').addEventListener('click', () => {
+            newContent = "";
+            document.querySelector('#display').textContent = newContent;
+            document.querySelector('.decimal').disabled = false;
+        })
+
         document.querySelector('#percent').addEventListener('click', () => {
             newContent = `${displayValue/100}`;
             displayValue = Number(newContent);
