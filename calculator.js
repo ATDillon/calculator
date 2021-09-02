@@ -45,7 +45,7 @@ function calculator(){
                 newContent += button.id;
                 newContent = newContent.substring(0, 9);
                 displayValue = Number(newContent);
-                document.querySelector('#display').textContent = newContent;
+                display.textContent = newContent;
 
                 if(newContent.includes('.')){
                     document.querySelector('.decimal').disabled = true;
@@ -80,7 +80,7 @@ function calculator(){
 
         document.querySelector('#clear').addEventListener('click', () => {
             newContent = "";
-            document.querySelector('#display').textContent = newContent;
+            display.textContent = newContent;
             document.querySelector('.decimal').disabled = false;
             operatorPad.forEach((button) => {
                 button.classList.remove('selected')
@@ -89,20 +89,20 @@ function calculator(){
 
         document.querySelector('#backspace').addEventListener('click', () => {
             newContent = "";
-            document.querySelector('#display').textContent = newContent;
+            display.textContent = newContent;
             document.querySelector('.decimal').disabled = false;
         })
 
         document.querySelector('#percent').addEventListener('click', () => {
             newContent = `${displayValue/100}`;
             displayValue = Number(newContent);
-            document.querySelector('#display').textContent = newContent;
+            display.textContent = newContent;
             if(newContent.includes('.')){
                 document.querySelector('.decimal').disabled = true;
             }
         })
 
-        document.querySelector('#display').textContent = newContent;
+        display.textContent = newContent;
     }
 
 
