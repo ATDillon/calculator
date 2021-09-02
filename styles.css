@@ -30,12 +30,13 @@ main{
     font-size: 2em;
     justify-self: center;
     display: flex;
+    justify-content: flex-end;
     align-items: center;
     background-color: hsl(200, 70%, 90%);
     width: 90%;
     height: 50%;
     border: inset 2px hsl(10, 0%, 60%);
-    padding-left: 4px;
+    padding-right: 4px;
     margin-top: 5px;
 }
 
@@ -78,6 +79,15 @@ button{
     height: 20%;
     width: auto;
     border: solid 1px hsl(50, 0%, 30%);
+}
+
+.operator:hover{
+    border: solid 2px hsl(50, 0%, 30%);
+}
+
+.selected{
+    background-color: hsl(200, 50%, 50%);
+    color:hsl(50, 0%, 80%);
 }
 
 #add{

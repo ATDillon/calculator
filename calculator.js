@@ -1,4 +1,7 @@
 function calculator(){
+    const numberButtons = document.querySelectorAll('.number'),
+    operatorButtons = document.querySelectorAll('.operator'),
+    display = document.querySelector('#display');
     let displayValue = undefined,
     storage = {operator: undefined,
     secondNum: undefined};
@@ -22,7 +25,7 @@ function calculator(){
                 return(Math.round((firstNum * secondNum)*1000)/1000);
             case 'divide':
                 if(firstNum === 0 || secondNum === 0){
-                    return("Error")
+                    return("Error");
                 }
                 console.log(`dividing ${firstNum} / ${secondNum}`)
                 return(Math.round((firstNum / secondNum)*1000)/1000);
@@ -31,9 +34,9 @@ function calculator(){
         }
     }
 
+
     function changeDisplay(){
-        const numberButtons = document.querySelectorAll('.number'),
-        operatorButtons = document.querySelectorAll('.operator');
+        const operatorPad = document.querySelectorAll('.operators > .operator');
         let newContent = "";
 
         numberButtons.forEach((button) => {
@@ -60,32 +63,40 @@ function calculator(){
                 newContent = '';
             })
         })
+
+       operatorPad.forEach((button) => {
+            
+            button.addEventListener('click', () => {
+
+                operatorPad.forEach((button) => {
+                    button.classList.remove('selected')
+                })
+
+                button.classList.add('selected');
+
+            })
+        }) 
     
 
         document.querySelector('#clear').addEventListener('click', () => {
             newContent = "";
             document.querySelector('#display').textContent = newContent;
+            document.querySelector('.decimal').disabled = false;
         })
-
-        
-
-
 
         document.querySelector('#display').textContent = newContent;
     }
 
+
     function getInputs(){
-        const numberButtons = document.querySelectorAll('.number'),
-        operatorButtons = document.querySelectorAll('.operator');
-        let display = document.querySelector('#display'),
-        result = null;
+        let result = null;
 
         //storage.secondNum works for consecutive calculations when displayValue gets changed by a
         //calculation, so 20+20 equals 40, then pressing = again gives 60 instead of 80.
 
         // In the event the second value isn't given, secondNum will take the value of firstNum for consecutive
         // calculations. so 10 + = will be interpreted as 10+10, then pressing = again will give 20+10.
-        
+
         operatorButtons.forEach((button) => {
             button.addEventListener('click', () => {
 
