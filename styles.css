@@ -22,22 +22,23 @@ main{
     width: 50vw;
     height: 70vw;
     border: outset 2px hsl(10, 0%, 60%);
+    border-radius: 5px;
 }
 
 #display{
     grid-area: display;
     font-family: monospace;
-    font-size: 2em;
+    font-size: 1.5em;
     justify-self: center;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     background-color: hsl(200, 70%, 90%);
     width: 90%;
-    height: 50%;
+    height: 45%;
     border: inset 2px hsl(10, 0%, 60%);
     padding-right: 4px;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 /*buttons*/
@@ -46,7 +47,12 @@ main{
     grid-area: clear;
     display: flex;
     flex-flow: row-reverse;
-    margin-right: 5px;
+    margin:0px 5px 10px 0px;
+}
+
+.misc{
+    width: 30%;
+    height: 75%;
 }
 
 .numpad{
@@ -99,13 +105,19 @@ button{
     height: auto;
 }
 
-@media(min-width: 600px){
+@media(min-width: 320px){
     #display{
-        font-size: 3.5em;
+        font-size: 2em;
     }
 }
 
-@media(min-width: 1000px){
+@media(min-width: 500px){
+    #display{
+        font-size: 3em;
+    }
+}
+
+@media(min-width: 750px){
 
     #calculator{
         width: 30vw;
@@ -113,7 +125,6 @@ button{
     }
 
     #display{
-        font-size: 3.75em;
         margin-top: 25px;
     }
 
@@ -121,4 +132,10 @@ button{
         font-size: 1.5em;
     }
 
+}
+
+@media(min-width: 1200px){
+    #display{
+        font-size: 4.25em;
+    }
 }

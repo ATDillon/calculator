@@ -82,6 +82,18 @@ function calculator(){
             newContent = "";
             document.querySelector('#display').textContent = newContent;
             document.querySelector('.decimal').disabled = false;
+            operatorPad.forEach((button) => {
+                button.classList.remove('selected')
+            })
+        })
+
+        document.querySelector('#percent').addEventListener('click', () => {
+            newContent = `${displayValue/100}`;
+            displayValue = Number(newContent);
+            document.querySelector('#display').textContent = newContent;
+            if(newContent.includes('.')){
+                document.querySelector('.decimal').disabled = true;
+            }
         })
 
         document.querySelector('#display').textContent = newContent;
