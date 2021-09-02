@@ -14,14 +14,18 @@ function calculator(){
         switch(operator){
             case 'add':
                 console.log(`adding ${firstNum} + ${secondNum}`)
-                return(firstNum + secondNum);
+                return(Math.round((firstNum + secondNum)*1000)/1000);
             case 'subtract':
                 console.log(`subtracting ${firstNum} - ${secondNum}`)
-                return(firstNum - secondNum);
+                return(Math.round((firstNum - secondNum)*1000)/1000);
             case 'multiply':
-                return(firstNum * secondNum);
+                return(Math.round((firstNum * secondNum)*1000)/1000);
             case 'divide':
-                return(firstNum / secondNum);
+                if(firstNum === 0 || secondNum === 0){
+                    return("Error")
+                }
+                console.log(`dividing ${firstNum} / ${secondNum}`)
+                return(Math.round((firstNum / secondNum)*1000)/1000);
             case 'equals':
                 return firstNum;
         }
@@ -29,13 +33,14 @@ function calculator(){
 
     function changeDisplay(){
         const numberButtons = document.querySelectorAll('.number'),
-        operatorButtons = document.querySelectorAll('.operators > .operator');
+        operatorButtons = document.querySelectorAll('.operator');
         let newContent = "";
 
         numberButtons.forEach((button) => {
             
             button.addEventListener('click', () => {
                 newContent += button.id;
+                newContent = newContent.substring(0, 9);
                 displayValue = Number(newContent);
                 document.querySelector('#display').textContent = newContent;
 
@@ -75,20 +80,12 @@ function calculator(){
         let display = document.querySelector('#display'),
         result = null;
 
-
-        /*numberButtons.forEach((button) => {
-            button.addEventListener('click', () => {
-
-                if(button.classList.contains('clear-all')){
-
-                }
-
-            })
-        }) */
-
-        //secondNum works for repeating consecutive calculations when displayValue gets changed by a
+        //storage.secondNum works for consecutive calculations when displayValue gets changed by a
         //calculation, so 20+20 equals 40, then pressing = again gives 60 instead of 80.
 
+        // In the event the second value isn't given, secondNum will take the value of firstNum for consecutive
+        // calculations. so 10 + = will be interpreted as 10+10, then pressing = again will give 20+10.
+        
         operatorButtons.forEach((button) => {
             button.addEventListener('click', () => {
 
@@ -111,11 +108,11 @@ function calculator(){
                 } 
                 else if(button.id === 'equals'){
                     result = operate(storage.firstNum, displayValue, storage.operator);
-                    storage.secondNum = displayValue;
+                    storage.secondNum = (displayValue != undefined) ? displayValue : storage.firstNum;
                     displayValue = result;
                     display.textContent = result;
 
-                    delete storage.firstNum;
+                   delete storage.firstNum;
                 } 
                 else{
                     result = operate(storage.firstNum, displayValue, storage.operator);
